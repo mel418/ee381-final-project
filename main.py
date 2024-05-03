@@ -5,6 +5,7 @@ def analyze_population(data, population_name):
     # Calculate mean and standard deviation
     mean = np.mean(data)
     std_dev = np.std(data)
+    sort = np.sort(data)
 
     # Plot histogram for original data
     plt.figure(figsize=(10, 5))
@@ -18,6 +19,14 @@ def analyze_population(data, population_name):
 
     print(f"Mean of {population_name}:", mean)
     print(f"Standard Deviation of {population_name}:", std_dev)
+
+    # Plot the sorted data
+    plt.plot(sort)
+    plt.title(f'{population_name} Sorted Data')
+    plt.xlabel('n')
+    plt.ylabel('x')
+    plt.show()
+
 
     # Define the specific (n, k) pairs
     specific_pairs = [
@@ -55,18 +64,18 @@ def analyze_population(data, population_name):
 
         # Histogram of sample means
         plt.subplot(1, 2, 1)
-        plt.hist(means, bins=20, alpha=0.5, color='skyblue')
-        plt.xlabel('Sample Means')
+        plt.hist(means, bins=30, edgecolor='black', alpha=0.5, color='skyblue')
+        plt.xlabel('x_bar')
         plt.ylabel('Frequency')
-        plt.title(f'Histogram of Sample Means (n={n}, k={k})\nE(x_bar)={expected_mean:.2f}, S(x_bar)={expected_std_dev_of_means:.2f}')
+        plt.title(f'Sample Means\nE(x_bar)={expected_mean:.2f}, S(x_bar)={expected_std_dev_of_means:.2f}')
         plt.grid(True)
 
         # Histogram of sample standard deviations
         plt.subplot(1, 2, 2)
-        plt.hist(std_devs, bins=20, alpha=0.5, color='orange')
-        plt.xlabel('Sample Standard Deviations')
+        plt.hist(std_devs, bins=30, edgecolor='black', alpha=0.5, color='orange')
+        plt.xlabel('S')
         plt.ylabel('Frequency')
-        plt.title(f'Histogram of Sample Standard Deviations (n={n}, k={k})\nE(s)={expected_std_dev:.2f}')
+        plt.title(f'Sample Standard Deviations (n={n}, k={k})\nE(s)={expected_std_dev:.2f}')
         plt.grid(True)
 
         plt.tight_layout()
