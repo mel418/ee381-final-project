@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def analyze_population(data, population_name):
-    # Calculate mean and standard deviation
     mean = np.mean(data)
     std_dev = np.std(data)
     sort = np.sort(data)
@@ -28,29 +27,25 @@ def analyze_population(data, population_name):
     plt.show()
 
 
-    # Define the specific (n, k) pairs
+    # (n, k) pairs
     specific_pairs = [
         (10, 10), (10, 50), (10, 100),
         (50, 10), (50, 50), (50, 100),
         (100, 10), (100, 50), (100, 100)
     ]
 
-    # Print header for the calculated values table
     print("\nCalculated Values:")
     print("n\tk\tE(x_bar)\tS(x_bar)\tE(s)")
     
-    # Generate samples for each (n, k) pair
+    # samples for each (n, k) pair
     for i, (n, k) in enumerate(specific_pairs):
-        means = []  # To store the means of samples for current (n, k)
-        std_devs = []  # To store the standard deviations of samples for current (n, k)
+        means = []  # means of samples for current (n, k)
+        std_devs = []  # standard deviations of samples for current (n, k)
 
         for _ in range(k):
-            # Generate a random sample of size n from the data
             sample = np.random.choice(data, size=n, replace=True)
-            # Calculate the mean and standard deviation of the sample
             sample_mean = np.mean(sample)
             sample_std_dev = np.std(sample)
-            # Append the mean and standard deviation to the lists
             means.append(sample_mean)
             std_devs.append(sample_std_dev)
 
@@ -81,7 +76,6 @@ def analyze_population(data, population_name):
         plt.tight_layout()
         plt.show()
 
-        # Print the calculated values in tabular format
         print(f"{n}\t{k}\t{expected_mean}\t{expected_std_dev_of_means}\t{expected_std_dev}")
 
 # Read data from file for Population 1
@@ -89,7 +83,6 @@ with open('data1.txt', 'r') as file:
     data1 = [float(line.strip()) for line in file if line.strip()]
 
 print('Population 1 Analysis: ')
-# Analyze Population 1
 analyze_population(data1, "Data 1")
 
 # Read data from file for Population 2
@@ -97,5 +90,4 @@ with open('data2.txt', 'r') as file:
     data2 = [float(line.strip()) for line in file if line.strip()]
 
 print('Population 2 Analysis: ')
-# Analyze Population 2
 analyze_population(data2, "Data 2")
