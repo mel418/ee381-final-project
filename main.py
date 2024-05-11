@@ -43,7 +43,7 @@ def analyze_population(data, population_name):
         std_devs = []  # standard deviations of samples for current (n, k)
 
         for _ in range(k):
-            sample = np.random.choice(data, size=n, replace=True)
+            sample = np.random.choice(data, size=n, replace=False)
             sample_mean = np.mean(sample)
             sample_std_dev = np.std(sample)
             means.append(sample_mean)
